@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import MovieList from './components/MovieList'
@@ -6,6 +6,9 @@ import Search from './components/Search'
 import Create from './components/Create'
 
 const App = () => {
+
+    const [listState, setListState] = useState([]);
+
     return (
         <div className="layout">
 
@@ -14,13 +17,13 @@ const App = () => {
 
             {/*Listado de peliculas*/}
             <section id="content" className="content">
-                <MovieList></MovieList>
+                <MovieList listState={listState} setListState={setListState}></MovieList>
             </section>
 
             {/*Barra lateral - Busqueda peliculas*/}
             <aside className="lateral">
                 <Search></Search>
-                <Create></Create>
+                <Create setListState={setListState}></Create>
             </aside>
 
             {/*Pie de página*/}
