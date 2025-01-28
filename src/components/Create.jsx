@@ -4,22 +4,23 @@ import { SaveToStorage } from '../helpers/SaveToStorage';
 const Create = ({ setListState }) => {
 
     const [movieState, setMovieState] = useState({
+        image: '',
         title: '',
         description: ''
     });
     const [message, setMessage] = useState('');
 
-    const { title, description } = movieState;
+    const { image, title, description } = movieState;
 
     const titleMovie = "Añadir películas";
 
     const getDataForm = e => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         // validamos campos del form
-        if (!title || !description) {
-            if (!title && !description) {
-                setMessage("Falta el título y la descripción");
+        if (!title || !description || !image) {
+            if (!title && !description && !image) {
+                setMessage("Falta el título, la imagen y la descripción");
                 resetMessage();
             } else if (!title) {
                 setMessage("Falta el título");
@@ -29,12 +30,17 @@ const Create = ({ setListState }) => {
                 setMessage("Falta la descripción");
                 resetMessage();
             }
+            else if (!image) {
+                setMessage("Falta la imagen");
+                resetMessage();
+            }
             return;
         }
 
         // procedemos si se ambos campos estan completos
         let movie = {
             id: Date.now(),
+            image,
             title,
             description,
         };
@@ -64,9 +70,16 @@ const Create = ({ setListState }) => {
     return (
         <div className="add">
             <h3 className="title">{titleMovie}</h3>
-            {message && <strong>{message}</strong>}
+            {message && <strong className=''>{message}</strong>}
 
             <form onSubmit={getDataForm}>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    onChange={e => setMovieState({ ...movieState, image: URL.createObjectURL(e.target.files[0]) })}
+                />
+
                 <input
                     type="text"
                     id="title"

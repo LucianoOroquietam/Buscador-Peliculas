@@ -36,6 +36,7 @@ const MovieList = ({ listState, setListState }) => {
             {Array.isArray(listState) && listState.map(movie => (
                 <article key={movie.id} className="peli-item">
                     <h3 className="title">{movie.title}</h3>
+                    <img width="400px" src={movie.image} alt="" />
                     <p className="description">{movie.description}</p>
                     <button className="edit">Editar</button>
                     <button className="delete" onClick={() => deleteMovie(movie.id)}>Borrar</button>
