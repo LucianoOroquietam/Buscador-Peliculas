@@ -74,10 +74,12 @@ const Create = ({ setListState }) => {
 
             <form onSubmit={getDataForm}>
                 <input
-                    type="file"
+                    type="text"
                     id="image"
                     name="image"
-                    onChange={e => setMovieState({ ...movieState, image: URL.createObjectURL(e.target.files[0]) })}
+                    placeholder='URL de la imagen'
+                    value={image}
+                    onChange={e => setMovieState({ ...movieState, image: e.target.value })}
                 />
 
                 <input

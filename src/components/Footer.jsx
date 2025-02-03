@@ -5,7 +5,7 @@ const Footer = () => {
         <>
             {/*Pie de página*/}
             <footer className="footer">
-                &copy; Máster en React - <a href="">Luciano Oroquieta</a>
+                &copy; cineXplorer - <a href="">Luciano Oroquieta</a>
             </footer>
         </>
     )

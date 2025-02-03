@@ -5,11 +5,9 @@ const Header = () => {
         <>
             {/*Cabecera*/}
             <header className="header">
-                <div className="logo">
-                    <div className="play"></div>
-                </div>
+                <img src="../../public/img/logo2.png" alt="" />
 
-                <h1>MisPelis</h1>
+                <h1>CineXplorer</h1>
             </header>
 
             {/*Barra de navegación*/}

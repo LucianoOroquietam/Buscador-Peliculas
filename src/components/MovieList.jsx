@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import EditMovie from './EditMovie';
 
 const MovieList = ({ listState, setListState }) => {
 
     //const [listState, SetListState] = useState([]);
+    const [edit, setEdit] = useState(0);
 
     useEffect(() => {
         console.log("Componentes del listado de peliculas cargado!!")
-        console.log(JSON.parse(localStorage.getItem('movie')));
-
         getPeliculas();
 
     }, []);
@@ -17,6 +17,8 @@ const MovieList = ({ listState, setListState }) => {
         //el nombre de la key es el mismo nombre con el que guardo en el component de create.jsx
         let movies = JSON.parse(localStorage.getItem("movie"));
         setListState(movies);
+        return movies;
+        
     }
 
     const deleteMovie = (id) => {
@@ -36,10 +38,22 @@ const MovieList = ({ listState, setListState }) => {
             {Array.isArray(listState) && listState.map(movie => (
                 <article key={movie.id} className="peli-item">
                     <h3 className="title">{movie.title}</h3>
-                    <img width="400px" src={movie.image} alt="" />
+                    <img width="200px" src={movie.image} alt="" />
                     <p className="description">{movie.description}</p>
-                    <button className="edit">Editar</button>
+                    <button className="edit" onClick={() => setEdit(movie.id)}>Editar</button>
                     <button className="delete" onClick={() => deleteMovie(movie.id)}>Borrar</button>
+
+                    {/*Formulario para editar pelicula */}
+                    {edit === movie.id && (
+                        <EditMovie 
+                        movie={movie}
+                        getPeliculas = {getPeliculas}
+                        setEdit = {setEdit}
+                        setListState = {setListState}
+                        >
+
+                        </EditMovie>
+                    )}
                 </article>
             ))}
         </>
