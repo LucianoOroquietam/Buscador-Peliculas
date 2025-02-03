@@ -91,7 +91,7 @@ body{
 }
 
 .peli-item {
-    max-width: 400px; 
+    max-width: 500px; 
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #ddd;
@@ -144,13 +144,16 @@ input[type="button"]{
 .lateral > div{
     box-sizing: border-box;
     width: 90%;
-    margin: 20px;
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 100px;
     padding: 20px;
-    padding-top: 10px;
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #ddd;
 }
+
 
 .lateral input[type="text"],
 .lateral input[type="text"],
@@ -194,14 +197,33 @@ input[type="button"]{
     text-decoration: none;
 }
 
+.not-found{
+    color: #9b0202;
+}
+
 @media (max-width: 1085px){
+
+    html, body {
+        overflow-x: hidden;
+        height: 100%;
+    }
+
     .content {
         flex-flow: column wrap;
         justify-content: center;
         align-items: center;
+        background-color: #d1defa;;
     }
 
     .peli-item{
         width: 80%;
+    }
+
+    .lateral > div{
+        display: none;
+    }
+
+    .lateral{
+        display: none;
     }
 }

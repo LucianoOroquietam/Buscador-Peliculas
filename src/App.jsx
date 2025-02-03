@@ -22,7 +22,7 @@ const App = () => {
 
             {/*Barra lateral - Busqueda peliculas*/}
             <aside className="lateral">
-                <Search></Search>
+                <Search listState={listState} setListState={setListState}></Search>
                 <Create setListState={setListState}></Create>
             </aside>
 

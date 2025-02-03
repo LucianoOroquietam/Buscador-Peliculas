@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
 import { createPortal } from 'react-dom';
 
-const Search = () => {
+const Search = ({listState, setListState}) => {
 
     const [search, setSearch] = useState('');
+    const [notFound, setNotFound] = useState(false);
 
-    const searchMovie = () => {
+    const searchMovie = (e) => {
         
+        //Crear estado y actualizar
+        setSearch(e.target.value);
+
         //sobre el almacenamiento del local storage voy a buscar una peli en especifico 
-        const movie = localStorage.getItem("movie");
-
-        const movieFilter = movie.filter((movie) => m ) 
-
+        let movieFilter = listState.filter((movie) => {
+            return movie.title.toLowerCase().includes(search.toLowerCase()) 
+        } ) 
+    
+        if(search.length <= 1 || movieFilter <= 0){
+            movieFilter = JSON.parse(localStorage.getItem("movie"));
+            setNotFound(true);
+        }else{
+            setNotFound(false);
+        }
+        
+        setListState(movieFilter);
     }
+    
     return (
         <>
             <div className="search">
                 <h3 className="title">Buscador</h3>
+
+                {(notFound && search.length > 1) &&
+                    <span className='not-found'>No se ha encontrado ninguna coincidencia</span> 
+                }
+                
                 <form>
                     <input
                         type="text"
